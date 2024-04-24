@@ -1,0 +1,11 @@
+{
+  "name": "node-hillell_homeworks",
+  "version": "1.0.0",
+  "description": "node.js homeworks ",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marina Li",
+  "license": "ISC"
+}
