@@ -4,8 +4,18 @@
   "description": "node.js homeworks ",
   "main": "main.js",
   "scripts": {
+    "start": "node ./main.js",
+    "start:dev": "nodemon ./main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Marina Li",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "dependencies": {
+    "colors": "^1.4.0",
+    "config": "^3.3.11",
+    "dotenv": "^16.4.5"
+  }
 }
