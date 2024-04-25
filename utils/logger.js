@@ -1,14 +1,8 @@
-function getLogger(fileName) {
+function getLogger(moduleName) {
     return {
-        info: (msg) => {
-            console.log(`${fileName}: ${msg}`);
-        },
-        warn: (msg) => {
-            console.error(`${fileName}: ${msg}`);
-        },
-        error: (msg) => {
-            console.error(`${fileName}: ${msg}`);
-        },
+        info: (...args) => console.log(`${moduleName}:`, ...args),
+        warn: (...args) => console.error(`${moduleName}:`, ...args),
+        error: (...args) => console.error(`${moduleName}:`, ...args),
     };
 }
 
