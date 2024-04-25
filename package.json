@@ -4,6 +4,8 @@
   "description": "node.js homeworks ",
   "main": "main.js",
   "scripts": {
+    "start": "node ./main.js",
+    "start:dev": "nodemon ./main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Marina Li",
