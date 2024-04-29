@@ -9,7 +9,7 @@ async function copyFiles(source, target) {
 
         for (const file of dirSource) {
             if (dirTarget.includes(file)) {
-                warn(`File or directory by path ${file} already exists.`);
+                warn(`File or directory ${file} already exists.`);
                 continue;
             }
 
