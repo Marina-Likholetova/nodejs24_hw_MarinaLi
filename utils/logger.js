@@ -16,10 +16,9 @@ try {
     fs.mkdirSync(logDirPath);
 }
 
-const infoStream = fs.createWriteStream(infoStreamPath, { encoding: "utf-8", flags: "a" });
-const errorStream = fs.createWriteStream(errorStreamPath, { encoding: "utf-8", flags: "a" });
+const infoStream = fs.createWriteStream(infoStreamPath, { flags: "a" });
+const errorStream = fs.createWriteStream(errorStreamPath, { flags: "a" });
 
-// error handling - ok?
 infoStream.on("error", (err) => {
     console.log("Info stream error", err.message);
 });
@@ -28,13 +27,9 @@ errorStream.on("error", (err) => {
     console.log("Error stream error", err.message);
 });
 
-// wrappers for writing data
-const logToInfoFile = (moduleName, ...args) => {
-    infoStream.write(logMessageTemplate(moduleName, ...args));
-};
-
-const logToErrorFile = (moduleName, ...args) => {
-    errorStream.write(logMessageTemplate(moduleName, ...args));
+// wrapper for writing data
+const logToFile = (streamFile, moduleName, ...args) => {
+    streamFile.write(logMessageTemplate(moduleName, ...args));
 };
 
 function getLogger(moduleName) {
@@ -42,15 +37,15 @@ function getLogger(moduleName) {
 
     return {
         info: (...args) => {
-            logToInfoFile(moduleName, ...args);
+            logToFile(infoStream, moduleName, ...args);
             logLevel === "info" && console.log(bgBlue(`${moduleName}:`), ...args);
         },
         warn: (...args) => {
-            logToErrorFile(moduleName, ...args);
+            logToFile(errorStream, moduleName, ...args);
             logLevel !== "error" && console.error(bgYellow(`${moduleName}:`), ...args);
         },
         error: (...args) => {
-            logToErrorFile(moduleName, ...args);
+            logToFile(errorStream, moduleName, ...args);
             console.error(bgRed(`${moduleName}:`), ...args);
         },
     };
