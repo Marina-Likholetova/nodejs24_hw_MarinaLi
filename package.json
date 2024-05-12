@@ -7,6 +7,8 @@
     "start": "node ./main.js",
     "start:dev": "nodemon ./main.js",
     "start:debug": "node --inspect-brk ./main.js",
+    "server": "node ./server.js",
+    "server:dev": "nodemon --inspect server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Marina Li",
