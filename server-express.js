@@ -6,13 +6,15 @@ const morgan = require("morgan");
 
 const logger = require('./utils/logger')('express srv');
 const stream = require('./config/rotatingFileStreamConfig.js');
+const { userRouter } = require("./router/users.js");
+const jsonBodyParser = express.json();
 
 const app = express();
 
 app.listen(srvConfig.port, () => logger.info(`server is listening on [${srvConfig.port}] port`));
 
+app.use(jsonBodyParser);
+
 app.use(morgan(morganConfig.format, { stream }));
 
-app.get('/healthcheck', (req, resp) => {
-    resp.send('healthcheck passed!');
-});
+app.use('/users', userRouter);
