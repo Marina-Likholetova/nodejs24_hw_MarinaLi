@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { server: srvConfig } = require("config");
+const { server: srvConfig, morgan: morganConfig } = require("config");
 
 const express = require("express");
 const morgan = require("morgan");
@@ -11,9 +11,7 @@ const app = express();
 
 app.listen(srvConfig.port, () => logger.info(`server is listening on [${srvConfig.port}] port`));
 
-const accessLogger = morgan(':date :method :url :status', { stream });
-
-app.use(accessLogger);
+app.use(morgan(morganConfig.format, { stream }));
 
 app.get('/healthcheck', (req, resp) => {
     resp.send('healthcheck passed!');
