@@ -2,8 +2,8 @@ require("dotenv").config();
 const http = require("http");
 const { StatusCodes } = require("http-status-codes");
 const logger = require("./utils/logger")("server");
+const { server: serverConfig } = require("config")
 
-const port = 3000;
 const healthcheckUrl = "/healthcheck";
 
 const handleHealthcheck = (req, resp) => {
@@ -20,7 +20,7 @@ const handleNotFound = (req, resp) => {
 
 const srv = http.createServer();
 
-srv.listen(port);
+srv.listen(serverConfig.port);
 
 srv.on("request", (req, resp) => {
     if (req.method === "GET" && req.url === healthcheckUrl) {
