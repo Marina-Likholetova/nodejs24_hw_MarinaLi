@@ -1,5 +1,5 @@
 const { disable, bgBlue, bgYellow, bgRed } = require("colors/safe");
-const { colorsEnabled, logLevel } = require("config");
+const { logger: { colorsEnabled, logLevel } } = require("config");
 const fs = require("fs");
 const path = require("path");
 
