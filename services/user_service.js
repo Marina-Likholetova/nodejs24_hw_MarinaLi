@@ -45,7 +45,7 @@ function updateUser(id, data) {
     return updatedUser;
 }
 
-function deleteUserById({ id }) {
+function deleteUserById(id) {
     const userIndex = dataSource.findIndex((user) => user.id === id);
     
     userIndex < 0 && throwError("User does not exist!");
