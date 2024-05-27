@@ -6,13 +6,15 @@ const apiUsersController = require("../controllers/users_controller.js")
 
 const userRouter = Router();
 
-userRouter.get("/", apiUsersController.getUserList);
+userRouter.route("/")
+    .get(apiUsersController.getUserList)
+    .post(userDataValidator, apiUsersController.addUser);
 
-userRouter.get("/:userId", userIdValidator, apiUsersController.getUserById, notFoundErrorHandler);
-
-userRouter.post("/", userDataValidator, apiUsersController.addUser);
-
-userRouter.delete("/:userId", userIdValidator, apiUsersController.deleteUserById, notFoundErrorHandler);
+userRouter.route("/:userId")
+    .all(userIdValidator)
+    .get(apiUsersController.getUserById)
+    .delete(apiUsersController.deleteUserById)
+    .all(notFoundErrorHandler)
 
 userRouter.use((_req, resp) => {
     resp.status(StatusCodes.NOT_FOUND).send();
