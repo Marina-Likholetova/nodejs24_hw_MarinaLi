@@ -14,6 +14,8 @@ const app = express();
 
 app.listen(srvConfig.port, () => logger.info(`server is listening on [${srvConfig.port}] port`));
 
+app.set('view engine', 'pug');
+
 app.use(jsonBodyParser);
 
 app.use(morgan(morganConfig.format, { stream }));
