@@ -1,0 +1,7 @@
+extends ../layout/layout 
+
+include ../mixins/userForm
+
+block content 
+    a(href="/") Back to home
+    +userForm({formAction: "/add-user", submitBtnText: "Save", formId: "addForm"})

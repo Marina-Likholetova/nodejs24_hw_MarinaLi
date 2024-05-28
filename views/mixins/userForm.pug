@@ -1,0 +1,16 @@
+
+mixin userForm({formAction, submitBtnText, formId})
+    .form-container
+        form(method="POST", action=`${formAction}` id=formId)
+            .group
+                label(for="username") Username
+                input(type="text" placeholder="enter the username" value=(locals.username) name="username" required)
+            .group
+                label(for="email") Email
+                input(type="email" placeholder="enter your email" value=(locals.email) name="email" required)
+        .buttons-container 
+            button(type="submit" class="btn" form=formId)=submitBtnText
+            button(type="reset" class="btn" form=formId) Cancel
+            if formId === "editForm"
+                form(method="POST", action=`/${locals.id}/delete`)
+                    button(type="submit" class="btn") Delete 

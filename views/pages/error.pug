@@ -1,0 +1,12 @@
+extends ../layout/layout 
+
+block content
+    .error-content
+        h1 Soory, an error has occurred!
+        if locals.message
+            .error-message
+                span Error message:
+                p= locals.message
+        else
+            p Something went wrong.
+        p Please, try again!

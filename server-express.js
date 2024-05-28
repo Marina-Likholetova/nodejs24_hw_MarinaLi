@@ -8,6 +8,7 @@ const morgan = require("morgan");
 const logger = require("./utils/logger")("express srv");
 const stream = require("./config/rotatingFileStreamConfig.js");
 const { userRouter } = require("./router/users.js");
+const { pagesRouter } = require("./router/pages.js");
 const jsonBodyParser = express.json();
 
 const app = express();
@@ -20,4 +21,10 @@ app.use(jsonBodyParser);
 
 app.use(morgan(morganConfig.format, { stream }));
 
+app.use(express.static('static'));
+
+// api route
 app.use("/users", cors(), userRouter);
+
+// pages route
+app.use("/", pagesRouter);
