@@ -35,7 +35,8 @@ const userIdValidator = async (req, resp, next) => {
 
 const userDataValidator = async (req, resp, next) => {
     try {
-        await userDataSchema.validate(req.body, { abortEarly: false });
+        const parsedBody = await userDataSchema.validate(req.body, { abortEarly: false });
+        req.body = parsedBody;
     } catch (err) {
         const errors = err.inner.reduce((acc, curr) => {
             if (!acc[curr.path]) {

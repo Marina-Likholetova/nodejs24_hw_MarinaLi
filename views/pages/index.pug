@@ -1,0 +1,21 @@
+extends ../layout/layout 
+
+
+block content 
+    .navbar 
+        a(href="/") Home Page
+    .main-content
+        h3.title The list of all users
+        .userlist
+            ul.item-row.headerItem
+                each headerItem in ["Id", "Username", "Email", "Action"]
+                    li=headerItem 
+            each userItem in locals.userList
+                ul.item-row.bodyItem
+                    li=userItem.id
+                    li=userItem.username 
+                    li=userItem.email
+                    li
+                        a(href=`/${userItem.id}/edit`) Edit 
+
+        a(href="/add-user" class="btn") Add User
